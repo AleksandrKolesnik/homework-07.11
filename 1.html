@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Homework</title>
+</head>
+<body>
+	<div class="myContainer"><p></p></div>
+	<input type="button" value="запустить" onclick="start()">
+	<input type="button" value="стоп" onclick="stop()">
+	<input type="button" value="заново" onclick="restart()">
+	<input type="button" value="назад" onclick="reverse()">
+
+	<script>
+		var i = 0, myVar;
+		var myContainer = document.querySelectorAll('.myContainer')[0];
+		function start(){
+			myVar = setTimeout(function(){
+				if (i <= 30){
+					myContainer.innerHTML =i;
+					i++;
+					start();
+				}
+			},1000);
+		}
+		function stop(){
+			clearTimeout(myVar);
+		}
+		function restart(){
+			stop();
+			i = 0;
+			start();
+		}
+		function reverse(){
+			stop();
+			myVar = setTimeout(function(){
+				if (i > 0){
+					myContainer.innerHTML =--i;
+					reverse();
+				}
+			},1000);
+		}
+	</script>
+</body>
+</html>

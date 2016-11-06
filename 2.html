@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>homework 2</title>
+</head>
+<body>
+	<div>
+		<ul class="myList">
+
+		</ul>
+	</div>
+	<script>
+		var parent = document.querySelector('.myList');
+		var userPhrase = prompt('Введите фразу','минимум 3 слова');
+		var regV = /а/g;
+		var matches = userPhrase.match(regV);
+		alert('вы ввели ' + matches.length + ' букв \'а\'');
+		var myArr = userPhrase.split(' ');
+		for (var i = 0, l = myArr.length; i < l; i++){
+			if (i == 0){
+				parent.insertAdjacentHTML('beforeEnd','<li>'+myArr[i].toUpperCase()+'</li>');
+			}
+			else{
+				parent.insertAdjacentHTML('beforeEnd','<li>'+myArr[i].toLowerCase()+'</li>');
+			}
+		}
+	</script>
+</body>
+</html>

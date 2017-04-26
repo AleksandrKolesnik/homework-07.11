@@ -5,22 +5,54 @@
 	<title>Homework</title>
 </head>
 <body>
-	<div class="myContainer"><p></p></div>
-	<input type="button" value="запустить" onclick="start()">
-	<input type="button" value="стоп" onclick="stop()">
-	<input type="button" value="заново" onclick="restart()">
-	<input type="button" value="назад" onclick="reverse()">
+	<div class="myContainer">
+		<h1></h1>
+	</div>
+	<div class="buttons">
+		<input type="button" value="запустить">
+		<input type="button" value="стоп">
+		<input type="button" value="заново">
+		<input type="button" value="назад">	
+	</div>
+	
 
 	<script>
 		var i = 0, myVar;
-		var myContainer = document.querySelectorAll('.myContainer')[0];
+		var myContainer = document.querySelector('.myContainer');
+		var h1 = myContainer.querySelector('h1');
+		var buttons = document.querySelector('.buttons');
+		myContainer.style.height = '100px';
+		buttons.addEventListener('click', clickOnParent);
+
+		function clickOnParent(event){
+			var target = event && event.target || event.srcElement;
+			var attr = target.getAttribute('value');
+			if (!attr) return;
+
+			if (attr == 'запустить'){
+				start();
+			}
+			else if (attr == 'стоп'){
+				stop();
+			}
+			else if (attr == 'заново'){
+				restart();
+			}
+			else if (attr == 'назад'){
+				reverse();
+			}
+			// console.log(target);
+			// console.log(attr);
+		}
+
 		function start(){
 			myVar = setTimeout(function(){
 				if (i <= 30){
-					myContainer.innerHTML =i;
+					h1.innerHTML = i;
 					i++;
 					start();
 				}
+				else return;
 			},1000);
 		}
 		function stop(){
@@ -35,9 +67,12 @@
 			stop();
 			myVar = setTimeout(function(){
 				if (i > 0){
-					myContainer.innerHTML =--i;
+					--i;
+					h1.innerHTML = i;
+					 
 					reverse();
 				}
+				else return;
 			},1000);
 		}
 	</script>
